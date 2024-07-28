@@ -29,10 +29,10 @@ _simplesound = simpleSound()
 _math = PredefMathFunctions()
 # Sound configurations, predefined at the moment
 _simplesound.reproductor.set_continuous()
-_simplesound.reproductor.set_waveform('celesta') # piano; sine
-_simplesound.reproductor.set_time_base(0.01)
-_simplesound.reproductor.set_min_freq(300)
-_simplesound.reproductor.set_max_freq(1500)
+_simplesound.reproductor.set_waveform('sine') # piano; sine
+_simplesound.reproductor.set_time_base(0.03)
+_simplesound.reproductor.set_min_freq(380)
+_simplesound.reproductor.set_max_freq(800)
 # The argparse library is used to pass the path and extension where the data
 # files are located
 parser = argparse.ArgumentParser()
@@ -213,7 +213,7 @@ if play_flag:
                 # Make the sound
                 _simplesound.reproductor.set_waveform('sine')
                 _simplesound.make_sound(yO5[x], 1)
-                _simplesound.reproductor.set_waveform('square')
+                _simplesound.reproductor.set_waveform('flute')
                 _simplesound.make_sound(y1[x], 1)
                 if x == (x_pos_max-1):
                     line = red_line.pop(0)
@@ -229,7 +229,7 @@ if play_flag:
                 # Make the sound
                 _simplesound.reproductor.set_waveform('sine')
                 _simplesound.make_sound(yA5[x], 1)
-                _simplesound.reproductor.set_waveform('square')
+                _simplesound.reproductor.set_waveform('flute')
                 _simplesound.make_sound(y1[x], 1)
                 if x == (x_pos_max-1):
                     line = red_line.pop(0)
@@ -245,12 +245,18 @@ if play_flag:
                 # Make the sound
                 _simplesound.reproductor.set_waveform('sine')
                 _simplesound.make_sound(yG0[x], 1)
-                _simplesound.reproductor.set_waveform('square')
+                _simplesound.reproductor.set_waveform('flute')
                 _simplesound.make_sound(y1[x], 1)
                 if x == (x_pos_max-1):
                     line = red_line.pop(0)
                     line.remove()
 # Save sound
+wav_nameO5 = path1[:-6] + 'O5.wav'
+wav_nameA5 = path1[:-6] + 'A5.wav'
+wav_nameG0 = path1[:-6] + 'G0.wav'
+_simplesound.save_sound(wav_nameO5, data_floatO5.loc[:,1], yO5, init=x_pos_min) 
+_simplesound.save_sound(wav_nameA5, data_floatA5.loc[:,1], yA5, init=x_pos_min)
+_simplesound.save_sound(wav_nameG0, data_floatG0.loc[:,1], yG0, init=x_pos_min)
 wav_nameO5Unk = path1[:-6] + 'O5-unknown.wav'
 wav_nameA5Unk = path1[:-6] + 'A5-unknown.wav'
 wav_nameG0Unk = path1[:-6] + 'G0-unknown.wav'
